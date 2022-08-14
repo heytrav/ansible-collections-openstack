@@ -29,6 +29,11 @@ options:
       description:
          - The flavor of the minion node for this ClusterTemplate
       type: str
+   floating_ip_enabled:
+      description:
+         - Indicates whether created Clusters should have a floating ip
+      type: bool
+      default: false
    keypair:
       description:
          - Name of the keypair to use.
@@ -216,6 +221,7 @@ class CoeClusterModule(OpenStackModule):
         discovery_url=dict(),
         docker_volume_size=dict(type='int'),
         flavor_id=dict(),
+        floating_ip_enabled=dict(type='bool', default=False),
         keypair=dict(no_log=False),
         labels=dict(type='raw'),
         master_count=dict(type='int', default=1),
@@ -249,6 +255,7 @@ class CoeClusterModule(OpenStackModule):
             discovery_url=self.params['discovery_url'],
             docker_volume_size=self.params['docker_volume_size'],
             flavor_id=self.params['flavor_id'],
+            floating_ip_enabled=self.params['floating_ip_enabled'],
             keypair=self.params['keypair'],
             labels=self._parse_labels(params['labels']),
             master_count=self.params['master_count'],
