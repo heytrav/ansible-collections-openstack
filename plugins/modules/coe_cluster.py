@@ -137,6 +137,11 @@ cluster:
             - The flavor of the minion node for this cluster
           type: str
           sample: c1.c1r1
+      floating_ip_enabled:
+          description:
+            - Indicates whether created Clusters should have a floating ip
+          type: bool
+          sample: true
       keypair:
           description:
             - Name of the keypair to use.
